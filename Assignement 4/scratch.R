@@ -119,7 +119,35 @@ return(out)
 #######################################################################################################################################
 
 
+library(TSA)
+data("Nile")
+y = Nile
+ts.plot(y)
+
+n = length(y)
+
+a <- KF(y, 1, 1)
+a
+
+sigma_epsilon_plus = 1
+sigma_eta_plus = 1
+
+epsilon_plus = rnorm(n, mean = 0, sd=sigma_epsilon_plus)
+eta_plus = rnorm(n, mean = 0, sd=sigma_eta_plus)
+
+y_plus <- 0
+y_plus[1] = 0
+
+alpha_plus <- 0
+alpha_plus[1] = 0
 
 
+for (t in 1:(n-1)){
+  alpha_plus[t+1] = alpha_plus[t] + eta_plus[t]
+  y_plus[t+1] = alpha_plus[t+1] +epsilon_plus[t+1]
+
+}
+
+plot(y)
 
 

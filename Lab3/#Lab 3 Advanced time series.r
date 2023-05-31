@@ -18,6 +18,7 @@ dgp <-function(n, phi, sigma_e, sigma_eta){
          "sigma_eta: variance of the AR process innovation term"
 
 eta = sigma_eta * rnorm(n)
+        
 e = sigma_e * rnorm(n)
 
 mu = 0
